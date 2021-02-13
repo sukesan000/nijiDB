@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +42,7 @@ public class NijidbController{
   }
 
   @GetMapping("/nijiDB")
-  public String nijiDB(){
+  public String nijiDB() throws IOException{
     // YouTube youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, new HttpRequestInitializer(){
     //   public void initialize(HttpRequest request) throws IOException{}
     // }).setApplicationName("youtube-cmdline-serch-sample").build();
@@ -50,11 +51,8 @@ public class NijidbController{
     for(Member member : list){
       String chId;
       chId = member.getChannel_id();
-      System.out.println(chId);
+      njService.getChannelInfo(chId);
     }
-    // System.out.println(list.get(0).getChannel_name;
-    //Map<String, Object> aaa = list.get(1).get(value);
-    //System.out.println(aaa);
     return "nijiDB";
   }
 }
