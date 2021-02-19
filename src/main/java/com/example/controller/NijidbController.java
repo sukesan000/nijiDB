@@ -10,6 +10,7 @@ import com.example.service.NijidbService;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.services.youtube.model.Channel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -47,12 +48,12 @@ public class NijidbController{
     //   public void initialize(HttpRequest request) throws IOException{}
     // }).setApplicationName("youtube-cmdline-serch-sample").build();
     List<Member> list = new ArrayList<Member>();
+    //チャンネルIDをリストに格納
     list = njService.getChannelId();
-    for(Member member : list){
-      String chId;
-      chId = member.getChannel_id();
-      njService.getChannelInfo(chId);
-    }
+    //チャンネルIDから検索
+    List<Channel> channelInfo = njService.getChannelInfo(list);
+    System.out.println(channelInfo);
+    
     return "nijiDB";
   }
 }
