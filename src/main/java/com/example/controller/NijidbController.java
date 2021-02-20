@@ -44,16 +44,13 @@ public class NijidbController{
 
   @GetMapping("/nijiDB")
   public String nijiDB() throws IOException{
-    // YouTube youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, new HttpRequestInitializer(){
-    //   public void initialize(HttpRequest request) throws IOException{}
-    // }).setApplicationName("youtube-cmdline-serch-sample").build();
     List<Member> list = new ArrayList<Member>();
     //チャンネルIDをリストに格納
     list = njService.getChannelId();
     //チャンネルIDから検索
-    List<Channel> channelInfo = njService.getChannelInfo(list);
-    System.out.println(channelInfo);
-    
+    List<Channel> channelInfoList = njService.getChannelInfo(list);
+    //entityに保存
+    njService.saveChannelInfo(channelInfoList, list);
     return "nijiDB";
   }
 }

@@ -57,4 +57,21 @@ public class NijidbService {
         }
         return channelsList;
     }
+
+    public void saveChannelInfo(List<Channel> channelInfoList, List<Member> member){
+        int i = 0;
+        for(Channel channel : channelInfoList){
+            String channelId = channel.getId();
+            String channelName = channel.getSnippet().getTitle();
+            String subscriver = channel.getStatistics().getSubscriberCount().toString();
+            //entityに記録されているid
+            String id = member.get(i).getChannel_id();
+            if(channelId.equals(id)){
+                System.out.println("aaa");
+                member.get(i).setChannel_name(channelName);
+                member.get(i).setSubscriber(subscriver);
+            }
+            i++;
+        }
+    }
 }

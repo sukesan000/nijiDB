@@ -28,5 +28,5 @@ public class Member{
     private String channel_id;
 
     @Column(name="subscriber")
-    private int subscriber;
+    private String subscriber;
 }
