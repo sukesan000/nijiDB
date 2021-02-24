@@ -24,6 +24,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.webjars:jquery:3.5.0'
+    implementation 'org.webjars:bootstrap:4.4.1-1'
 	// https://mvnrepository.com/artifact/com.google.apis/google-api-services-youtube
 	compile group: 'com.google.apis', name: 'google-api-services-youtube', version: 'v3-rev222-1.25.0'
 	// https://mvnrepository.com/artifact/com.google.http-client/google-http-client-jackson2

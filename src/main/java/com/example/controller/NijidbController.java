@@ -43,7 +43,7 @@ public class NijidbController{
   }
 
   @GetMapping("/nijiDB")
-  public String nijiDB() throws IOException{
+  public String nijiDB(Model model) throws IOException{
     List<Member> list = new ArrayList<Member>();
     //チャンネルIDをリストに格納
     list = njService.getChannelId();
@@ -51,6 +51,10 @@ public class NijidbController{
     List<Channel> channelInfoList = njService.getChannelInfo(list);
     //entityに保存
     njService.saveChannelInfo(channelInfoList, list);
+    //データ全取得
+    List<Member> memberList = njService.searchAll();
+    //viewで表示
+    model.addAttribute("memberList", memberList);
     return "nijiDB";
   }
 }

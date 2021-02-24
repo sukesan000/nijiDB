@@ -7,6 +7,7 @@ import java.util.Map;
 import com.example.entity.Member;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Repository;
 public class NijidbRepository{
     @Autowired
     JdbcTemplate jdbcTemplate;
+
+    Member member;
 
     public List<Member> getChannelId(){
         String sql = "select id, channel_id from member_info";
@@ -27,4 +30,17 @@ public class NijidbRepository{
         }
         return list;
     }
+
+    public List<Member> findAll() {
+    return jdbcTemplate.query(
+        "SELECT * FROM member_info ORDER BY id",
+        new BeanPropertyRowMapper<Member>(Member.class));
+    }
+
+    public void insertOne(String channelName ,String subscriber ,int id) {
+        jdbcTemplate.update(
+            "UPDATE member_info SET channel_name = ?, subscriber = ? WHERE id = ?", channelName, subscriber, id);
+        }
+
+
 }

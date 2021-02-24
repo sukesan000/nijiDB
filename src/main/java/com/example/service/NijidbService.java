@@ -35,7 +35,7 @@ public class NijidbService {
         }).setApplicationName("youtube-cmdline-search-sample").build();
 
         //APIキー
-        String key = "AIzaSyBQ333HQ0n75Ab6FAM53Y8Z-7UwJE45yAQ";
+        String key = "AIzaSyCfLSCfatZoJJ7asA404PkrZG5lf4Servc";
         // チャンネルID
         String chId = "";
         //検索実行
@@ -52,9 +52,6 @@ public class NijidbService {
             Channel channel = channelsResponse.getItems().get(0);
             channelsList.add(channel);
         }
-        for(Channel aaa : channelsList){
-            System.out.println(aaa);
-        }
         return channelsList;
     }
 
@@ -66,12 +63,17 @@ public class NijidbService {
             String subscriver = channel.getStatistics().getSubscriberCount().toString();
             //entityに記録されているid
             String id = member.get(i).getChannel_id();
+            //entityにセット
             if(channelId.equals(id)){
-                System.out.println("aaa");
                 member.get(i).setChannel_name(channelName);
                 member.get(i).setSubscriber(subscriver);
+                nijidbRepository.insertOne(member.get(i).getChannel_name(), member.get(i).getSubscriber(), member.get(i).getId());
             }
             i++;
         }
+    }
+
+    public List<Member> searchAll(){
+        return nijidbRepository.findAll();
     }
 }
