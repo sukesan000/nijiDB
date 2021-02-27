@@ -60,14 +60,26 @@ public class NijidbService {
         for(Channel channel : channelInfoList){
             String channelId = channel.getId();
             String channelName = channel.getSnippet().getTitle();
-            String subscriver = channel.getStatistics().getSubscriberCount().toString();
+            int subscriver = channel.getStatistics().getSubscriberCount().intValue();
+            int viewCount = channel.getStatistics().getViewCount().intValue();
+            int videoCount = channel.getStatistics().getVideoCount().intValue();
+            String subscriver_ = String.format("%,d", subscriver);
+            String viewCount_ =  String.format("%,d", viewCount);
+            String videoCount_ = String.format("%,d", videoCount);
+
             //entityに記録されているid
             String id = member.get(i).getChannel_id();
             //entityにセット
             if(channelId.equals(id)){
                 member.get(i).setChannel_name(channelName);
-                member.get(i).setSubscriber(subscriver);
-                nijidbRepository.insertOne(member.get(i).getChannel_name(), member.get(i).getSubscriber(), member.get(i).getId());
+                member.get(i).setSubscriber(subscriver_);
+                member.get(i).setViewCount(viewCount_);
+                member.get(i).setVideoCount(videoCount_);
+                nijidbRepository.insertOne(member.get(i).getChannel_name(), 
+                    member.get(i).getSubscriber(), 
+                    member.get(i).getViewCount(), 
+                    member.get(i).getVideoCount(),
+                    member.get(i).getId());
             }
             i++;
         }

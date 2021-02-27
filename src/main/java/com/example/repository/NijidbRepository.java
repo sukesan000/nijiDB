@@ -37,9 +37,9 @@ public class NijidbRepository{
         new BeanPropertyRowMapper<Member>(Member.class));
     }
 
-    public void insertOne(String channelName ,String subscriber ,int id) {
+    public void insertOne(String channelName ,String subscriber ,String viewCount ,String videoCount ,int id) {
         jdbcTemplate.update(
-            "UPDATE member_info SET channel_name = ?, subscriber = ? WHERE id = ?", channelName, subscriber, id);
+            "UPDATE member_info SET channel_name = ?, subscriber = ?, viewCount = ?, videoCount = ? WHERE id = ?", channelName, subscriber, viewCount, videoCount, id);
         }
 
 

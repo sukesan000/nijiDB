@@ -29,4 +29,10 @@ public class Member{
 
     @Column(name="subscriber")
     private String subscriber;
+
+    @Column(name="viewCount")
+    private String viewCount;
+
+    @Column(name="videoCount")
+    private String videoCount;
 }

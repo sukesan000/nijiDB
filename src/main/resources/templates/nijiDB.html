@@ -15,6 +15,8 @@
                     <th>チャンネル名</th>
                     <th>チャンネルid</th>
                     <th>登録者数</th>
+                    <th>総再生回数</th>
+                    <th>総動画数</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,7 +25,15 @@
                     <td th:text="${member.name}"></td>
                     <td th:text="${member.channel_name}"></td>
                     <td th:text="${member.channel_id}"></td>
-                    <td th:text="${member.subscriber}"></td>
+                    <td>
+                        <div th:text="${member.subscriber}" class="text-right"></div>
+                    </td>
+                    <td>
+                        <div th:text="${member.viewCount}" class="text-right"></div>
+                    </td>
+                    <td>
+                        <div th:text="${member.videoCount}" class="text-right"></div>
+                    </td>
                 </tr>
             </tbody>
         </table>
