@@ -35,4 +35,7 @@ public class Member{
 
     @Column(name="videoCount")
     private String videoCount;
+
+    @Column(name="dateTime")
+    private String dateTime;
 }

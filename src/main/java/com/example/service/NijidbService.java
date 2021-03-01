@@ -63,6 +63,7 @@ public class NijidbService {
             int subscriver = channel.getStatistics().getSubscriberCount().intValue();
             int viewCount = channel.getStatistics().getViewCount().intValue();
             int videoCount = channel.getStatistics().getVideoCount().intValue();
+            String dateTime = channel.getSnippet().getPublishedAt().toString();
             String subscriver_ = String.format("%,d", subscriver);
             String viewCount_ =  String.format("%,d", viewCount);
             String videoCount_ = String.format("%,d", videoCount);
@@ -75,10 +76,12 @@ public class NijidbService {
                 member.get(i).setSubscriber(subscriver_);
                 member.get(i).setViewCount(viewCount_);
                 member.get(i).setVideoCount(videoCount_);
+                member.get(i).setDateTime(dateTime);
                 nijidbRepository.insertOne(member.get(i).getChannel_name(), 
                     member.get(i).getSubscriber(), 
                     member.get(i).getViewCount(), 
                     member.get(i).getVideoCount(),
+                    member.get(i).getDateTime(),
                     member.get(i).getId());
             }
             i++;
@@ -87,5 +90,9 @@ public class NijidbService {
 
     public List<Member> searchAll(){
         return nijidbRepository.findAll();
+    }
+
+    public List<Member> findMembers(String keyword){
+        return nijidbRepository.findMembers(keyword);
     }
 }

@@ -32,15 +32,18 @@ public class NijidbRepository{
     }
 
     public List<Member> findAll() {
-    return jdbcTemplate.query(
-        "SELECT * FROM member_info ORDER BY id",
-        new BeanPropertyRowMapper<Member>(Member.class));
+        return jdbcTemplate.query(
+            "SELECT * FROM member_info ORDER BY id",
+            new BeanPropertyRowMapper<Member>(Member.class));
     }
 
-    public void insertOne(String channelName ,String subscriber ,String viewCount ,String videoCount ,int id) {
+    public void insertOne(String channelName ,String subscriber ,String viewCount ,String videoCount ,String dateTime ,int id) {
         jdbcTemplate.update(
-            "UPDATE member_info SET channel_name = ?, subscriber = ?, viewCount = ?, videoCount = ? WHERE id = ?", channelName, subscriber, viewCount, videoCount, id);
+            "UPDATE member_info SET channel_name = ?, subscriber = ?, viewCount = ?, videoCount = ?, dateTime = ? WHERE id = ?", channelName, subscriber, viewCount, videoCount, dateTime, id);
         }
 
-
+    public List<Member> findMembers(String keyword){
+        return jdbcTemplate.query(
+            "select * from member_info where channel_name like '?'", keyword);
+    }
 }

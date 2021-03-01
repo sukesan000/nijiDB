@@ -9,33 +9,56 @@
         <title>nijiDB</title>
     </head>
     <body>
-        <table class="table table-striped sort-table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>名前</th>
-                    <th>チャンネル名</th>
-                    <th>登録者数</th>
-                    <th>総再生回数</th>
-                    <th>総動画数</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="member : ${memberList}">
-                    <td th:text="${member.id}"></td>
-                    <td th:text="${member.name}"></td>
-                    <td th:text="${member.channel_name}"></td>
-                    <td>
-                        <div th:text="${member.subscriber}" class="text-right"></div>
-                    </td>
-                    <td>
-                        <div th:text="${member.viewCount}" class="text-right"></div>
-                    </td>
-                    <td>
-                        <div th:text="${member.videoCount}" class="text-right"></div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <form th:action="@{/member/search}" method="post">
+                        <div class="input-group">
+                          <input type="text" name="keyword" class="form-control" placeholder="Search for..." />
+                          <span class="input-group-btn">
+                            <input class="btn btn-default" type="submit" value="検索" />
+                          </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped sort-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>名前</th>
+                                <th>チャンネル名</th>
+                                <th>登録者数</th>
+                                <th>総再生回数</th>
+                                <th>総動画数</th>
+                                <th>チャンネル作成日</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="member : ${memberList}">
+                                <td th:text="${member.id}"></td>
+                                <td th:text="${member.name}"></td>
+                                <td th:text="${member.channel_name}"></td>
+                                <td>
+                                    <div th:text="${member.subscriber}" class="text-right"></div>
+                                </td>
+                                <td>
+                                    <div th:text="${member.viewCount}" class="text-right"></div>
+                                </td>
+                                <td>
+                                    <div th:text="${member.videoCount}" class="text-right"></div>
+                                </td>
+                                <td>
+                                    <div th:text="${member.dateTime}" class="text-right"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
