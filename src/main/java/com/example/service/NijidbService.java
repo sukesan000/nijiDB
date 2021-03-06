@@ -3,6 +3,7 @@ package com.example.service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.example.entity.Member;
 import com.example.repository.NijidbRepository;
@@ -92,7 +93,7 @@ public class NijidbService {
         return nijidbRepository.findAll();
     }
 
-    public List<Member> findMembers(String keyword){
+    public List<Map<String, Object>> findMembers(String keyword){
         return nijidbRepository.findMembers(keyword);
     }
 }

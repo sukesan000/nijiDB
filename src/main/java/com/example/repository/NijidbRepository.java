@@ -42,8 +42,8 @@ public class NijidbRepository{
             "UPDATE member_info SET channel_name = ?, subscriber = ?, viewCount = ?, videoCount = ?, dateTime = ? WHERE id = ?", channelName, subscriber, viewCount, videoCount, dateTime, id);
         }
 
-    public List<Member> findMembers(String keyword){
-        return jdbcTemplate.query(
+    public List<Map<String, Object>> findMembers(String keyword){
+        return jdbcTemplate.queryForList(
             "select * from member_info where channel_name like '?'", keyword);
     }
 }
