@@ -43,7 +43,12 @@ public class NijidbRepository{
         }
 
     public List<Map<String, Object>> findMembers(String keyword){
-        return jdbcTemplate.queryForList(
-            "select * from member_info where channel_name like '?'", keyword);
+        String sql = "";
+        if(keyword == null){
+            sql = "SELECT * FROM member_info ORDER BY id";
+        }else{
+            sql = "select * from member_info where concat(channel_name, name) like '%" + keyword + "%'";
+        }
+        return jdbcTemplate.queryForList(sql);
     }
 }

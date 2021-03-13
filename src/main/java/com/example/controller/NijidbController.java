@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -61,8 +60,8 @@ public class NijidbController{
   }
 
   @PostMapping("/nijiDB")
-  public String search(String keyword, Model model, BindingResult result){
-    List<Member> memberList = njService.findMembers(keyword);
+  public String search(String keyword, Model model){
+    List<Map<String, Object>>  memberList = njService.findMembers(keyword);
     model.addAttribute("memberList", memberList);
     return "nijiDB";
   }
