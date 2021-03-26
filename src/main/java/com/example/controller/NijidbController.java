@@ -7,9 +7,6 @@ import java.util.Map;
 
 import com.example.entity.Member;
 import com.example.service.NijidbService;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.youtube.model.Channel;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class NijidbController{
   private final JdbcTemplate jdbcTemplate;
-  private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
-  private static final com.google.api.client.json.JsonFactory JSON_FACTORY = new JacksonFactory();
-  private static final String API_KEY = "AIzaSyBQ333HQ0n75Ab6FAM53Y8Z-7UwJE45yAQ";
     
   @Autowired
   public NijidbController(JdbcTemplate jdbcTemplate){
