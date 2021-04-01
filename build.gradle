@@ -24,6 +24,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-tomcat'
 	implementation 'org.webjars:jquery:3.5.0'
     implementation 'org.webjars:bootstrap:4.4.1-1'
 	// https://mvnrepository.com/artifact/joda-time/joda-time
@@ -50,3 +51,9 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+
+apply plugin: 'war'
+  war {
+    archiveName 'nijiDB.war'
+  }
