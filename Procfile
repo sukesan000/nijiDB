@@ -1,0 +1,1 @@
+web: java -jar build/libs/nijiDB-0.0.1-SNAPSHOT.jar --server.port=$PORT

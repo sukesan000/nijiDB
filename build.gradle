@@ -52,8 +52,7 @@ test {
 	useJUnitPlatform()
 }
 
-
-apply plugin: 'war'
-  war {
-    archiveName 'nijiDB.war'
-  }
+  jar {
+  baseName = 'nijiDB'
+  version =  '0.1.0'
+}
