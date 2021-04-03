@@ -37,7 +37,7 @@ public class NijidbController{
     return "test";
   }
 
-  @GetMapping("/nijiDB")
+  @GetMapping("/")
   public String nijiDB(Model model) throws IOException{
     List<Member> list = new ArrayList<Member>();
     //チャンネルIDをリストに格納
@@ -53,7 +53,7 @@ public class NijidbController{
     return "nijiDB";
   }
 
-  @PostMapping("/nijiDB")
+  @PostMapping("/")
   public String search(String keyword, Model model){
     List<Map<String, Object>>  memberList = njService.findMembers(keyword);
     model.addAttribute("memberList", memberList);
